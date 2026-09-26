@@ -13,12 +13,14 @@ class UserAdmin(UserAdmin):
 class PostAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     list_filter = ["created_time"]
+    list_display = ["title"]
 
 
 @admin.register(Commentary)
 class CommentaryAdmin(admin.ModelAdmin):
-    search_fields = ["user"]
+    search_fields = ["user__username"]
     list_filter = ["created_time"]
+    list_display = ["user"]
 
 
 admin.site.unregister(Group)
