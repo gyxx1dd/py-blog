@@ -1,17 +1,15 @@
-from http.client import HTTPResponse
-
 from blog.forms import CommentaryForm
 from blog.models import Post, Commentary, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 
 # Create your views here.
-def index(request: HttpRequest) -> HTTPResponse:
+def index(request: HttpRequest) -> HttpResponse:
     post = Post.objects.all()
     paginator = Paginator(post, 5)
     page_number = request.GET.get("page")
